@@ -2,13 +2,18 @@
   "name": "instaclone",
   "version": "1.0.0",
   "scripts": {
-    "dev": ""
+    "dev": "nodemon --exec node server.js"
   },
   "repository": "https://github.com/solitasroh/instaclone-backend.git",
   "author": "solitas.roh <solitasroh@gmail.com>",
   "license": "MIT",
-  "bugs":{
+  "bugs": {
     "url": "https://github.com/solitasroh/instaclone-backend/issues"
   },
-  "homepage": "https://github.com/solitasroh/instaclone-backend#readme"
+  "homepage": "https://github.com/solitasroh/instaclone-backend#readme",
+  "dependencies": {
+    "apollo-server": "^2.19.2",
+    "graphql": "^15.5.0",
+    "nodemon": "^2.0.7"
+  }
 }
