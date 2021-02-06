@@ -1,4 +1,4 @@
-const { ApollorServer, gql, ApolloServer } = require("apollo-server");
+import { gql, ApolloServer } from "apollo-server";
 
 // The graphQL scheme
 const typeDefs = gql`
@@ -19,5 +19,5 @@ const server = new ApolloServer({
 });
 
 server.listen().then(({url}) => {
-    console.log('Server ready at ${url}');
+    console.log(`Server ready at ${url}`);
 });
