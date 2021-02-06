@@ -1,0 +1,14 @@
+{
+  "name": "instaclone",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": ""
+  },
+  "repository": "https://github.com/solitasroh/instaclone-backend.git",
+  "author": "solitas.roh <solitasroh@gmail.com>",
+  "license": "MIT",
+  "bugs":{
+    "url": "https://github.com/solitasroh/instaclone-backend/issues"
+  },
+  "homepage": "https://github.com/solitasroh/instaclone-backend#readme"
+}
