@@ -1,10 +1,11 @@
 import {gql} from "graphql"
+
 export default gql`
     type User {
         id: String!
         firstName:      String!
         lastName:       String
-        username:       String!
+        userName:       String!
         email:          String!
         createdAt: String!
         updatedAt: String!
@@ -13,14 +14,14 @@ export default gql`
         createAccount(
             firstName: String!
             lastName: String
-            username: String!
+            userName: String!
             email: String!
             password: String!
         ): User
     }
     type Query {
         seeProfile(
-            username: String
+            userName: String
         ): User
     }
 `;
