@@ -1,5 +1,6 @@
 import bycrpty from "bcrypt"
 import client from "../client"
+import jwt from "jsonwebtoken"
 
  export default {
      Mutation: {
@@ -23,7 +24,7 @@ import client from "../client"
                 if (existingUser) {
                     throw new Error("This username/email is already taken");
                 }
-                
+
                 const uglyPassword = await bycrpty.hash(password, 10);
                  // save and return the user
                 return client.user.create({data: {
@@ -36,6 +37,31 @@ import client from "../client"
             } catch (error) {
                 return error;
             }
-         },
+        },
+
+        login: async(_, {userName, password}) => {
+            const findUser = await client.user.findUnique({where: {userName}});
+            if (!findUser) {
+                return {
+                    ok: false,
+                    error: "User not found"
+                };
+            }
+            // check password with arg.password
+            const passwordMatched = await bycrpty.compare(password, findUser.password);
+            if (!passwordMatched) {
+                return {
+                    ok: false,
+                    error: "Password not matched"
+                }
+            }
+            //issue a token and send it to user
+            const token = jwt.sign({id:findUser.id}, process.env.SECRET_KEY)
+            return {
+                ok: true,
+                token
+            }
+        }
+
      }
  }
