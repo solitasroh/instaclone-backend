@@ -9,9 +9,11 @@ import { protectedResolver } from "../users.utils";
         editProfile: protectedResolver(
             async (
             _, 
-            {firstName, lastName, userName, email, password: newPassword, bio},
+            {firstName, lastName, userName, email, password: newPassword, bio, avatar},
             {loggedInUser, protectResolver}
             ) => {
+                const {filename, createReadStream}  = await avatar;
+                const stream = createReadStream();
                 let uglyPassword;
                 if(newPassword) {
                     uglyPassword = await bycrpty.hash(newPassword, 10);

@@ -2,7 +2,8 @@
   "name": "instaclone",
   "version": "1.0.0",
   "scripts": {
-    "dev": "nodemon --exec babel-node server",
+    "preinstall": "npx npm-force-resolutions",
+    "dev": "nodemon --exec babel-node server --delay 2s",
     "migrate": "npx prisma migrate dev --preview-feature",
     "studio": "npx prisma studio"
   },
@@ -29,5 +30,9 @@
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
     "prisma": "2.17.0"
+  },
+  "resolutions" {
+    "fs-capacitor": "^6.2.0",
+    "graphql-upload": "^11.0.0."
   }
 }
