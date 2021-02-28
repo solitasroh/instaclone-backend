@@ -1,16 +1,17 @@
-import bycrpty from "bcrypt"
-import client from "../../client"
-import jwt from "jsonwebtoken"
+import bycrpty from "bcrypt";
+import client from "../../client";
+import jwt from "jsonwebtoken";
+import { protectedResolver } from "../users.utils";
+
 
  export default {
      Mutation: {
-        editProfile: async (
+        editProfile: protectedResolver(
+            async (
             _, 
-            {firstName, lastName, userName, email, password: newPassword},
-            {loggedInUser}) => {
-                if(!loggedInUser) {
-                    
-                }
+            {firstName, lastName, userName, email, password: newPassword, bio},
+            {loggedInUser, protectResolver}
+            ) => {
                 let uglyPassword;
                 if(newPassword) {
                     uglyPassword = await bycrpty.hash(newPassword, 10);
@@ -24,9 +25,10 @@ import jwt from "jsonwebtoken"
                         lastName,
                         userName,
                         email,
+                        bio,
                         ...(uglyPassword && {password: uglyPassword}),
                     },
-                });
+                }); 
                 if (updatedUser) {
                     return {
                         ok: true,
@@ -37,6 +39,7 @@ import jwt from "jsonwebtoken"
                         error: "could not update profile"
                     }
                 }
-            },
+            }
+        ),
      }
  }
