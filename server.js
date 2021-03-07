@@ -1,12 +1,14 @@
 import dotenv from "dotenv"
+import express from "express"
+import logger from "morgan";
 import {getUser, protectResolver} from "./users/users.utils"
 dotenv.config();
 
-import { ApolloServer } from "apollo-server";
+import { ApolloServer } from "apollo-server-express";
 import {typeDefs, resolvers} from "./schema";
 
 // The graphQL scheme
-
+const PORT = process.env.PORT;
 const server = new ApolloServer({
     resolvers,
     typeDefs,
@@ -18,8 +20,10 @@ const server = new ApolloServer({
     }
 });
 
-const PORT = process.env.PORT;
 
-server.listen(PORT).then(({url}) => {
-    console.log(`✅ Server ready at ${url}`);
+const app = express();
+app.use(logger("tiny"));
+server.applyMiddleware({ app });
+app.listen({port: PORT}, () => {
+    console.log(`✅ Server ready at http://localhost:${PORT}`);
 });
