@@ -1,3 +1,4 @@
+import fs, { write } from "fs";
 import bycrpty from "bcrypt";
 import client from "../../client";
 import jwt from "jsonwebtoken";
@@ -13,7 +14,11 @@ import { protectedResolver } from "../users.utils";
             {loggedInUser, protectResolver}
             ) => {
                 const {filename, createReadStream}  = await avatar;
-                const stream = createReadStream();
+                const readStream = createReadStream();
+                // do not load if we use the aws...
+                const writeStream = fs.createWriteStream(process.cwd()  + "/uploads/" + filename);
+                readStream.pipe(writeStream);
+
                 let uglyPassword;
                 if(newPassword) {
                     uglyPassword = await bycrpty.hash(newPassword, 10);
@@ -28,6 +33,7 @@ import { protectedResolver } from "../users.utils";
                         userName,
                         email,
                         bio,
+                        
                         ...(uglyPassword && {password: uglyPassword}),
                     },
                 }); 
