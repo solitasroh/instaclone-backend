@@ -1,7 +1,6 @@
-import fs, { write } from "fs";
+import fs, { createWriteStream } from "fs";
 import bycrpty from "bcrypt";
 import client from "../../client";
-import jwt from "jsonwebtoken";
 import { protectedResolver } from "../users.utils";
 
 
@@ -13,11 +12,16 @@ import { protectedResolver } from "../users.utils";
             {firstName, lastName, userName, email, password: newPassword, bio, avatar},
             {loggedInUser, protectResolver}
             ) => {
-                const {filename, createReadStream}  = await avatar;
-                const readStream = createReadStream();
-                // do not load if we use the aws...
-                const writeStream = fs.createWriteStream(process.cwd()  + "/uploads/" + filename);
-                readStream.pipe(writeStream);
+                let avatarUrl = null;
+                if (avatar) {
+                    const {filename, createReadStream}  = await avatar;
+                    const newFilename = `${loggedInUser.id}-${Date.now()}-${filename}`               
+                    const readStream = createReadStream();
+                    // do not load if we use the aws...
+                    const writeStream = createWriteStream(process.cwd()  + "/uploads/" + newFilename);
+                    readStream.pipe(writeStream); //save on the filesystem
+                    avatarUrl = `http://localhost:4000/static/${newFilename}`;
+                }
 
                 let uglyPassword;
                 if(newPassword) {
@@ -33,7 +37,7 @@ import { protectedResolver } from "../users.utils";
                         userName,
                         email,
                         bio,
-                        
+                        ...(avatarUrl && {avatar: avatarUrl}),
                         ...(uglyPassword && {password: uglyPassword}),
                     },
                 }); 
