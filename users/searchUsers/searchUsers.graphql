@@ -1,0 +1,3 @@
+type Query {
+    searchUsers(keyword: String!, cursor: Int): [User]
+}

@@ -8,8 +8,9 @@ Instaclone Backend.
 -   [x] See Profile
 -   [x] Login
 -   [x] Edit Profile
+-   [x] Change Avatar (Image Upload)
 -   [x] Follow User
 -   [x] Unfollow User
--   [ ] See followers and following w/ Pagination
--   [ ] Compute fields;
--   [ ] Change Avatar (Image Upload)
+-   [x] See followers and following w/ Pagination
+-   [x] Compute fields
+-   [x] Search Users
