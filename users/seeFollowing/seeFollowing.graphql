@@ -1,0 +1,9 @@
+type SeeFollowingResult {
+    ok: Boolean!
+    error: String
+    following: [User]
+}
+
+type Query {
+    seeFollowing(userName: String!, cursor: Int): SeeFollowingResult
+}
