@@ -1,0 +1,10 @@
+type SeeFollowersQuery {
+    ok: Boolean!
+    error: String
+    followers: [User]
+    totalPage: Int
+}
+
+type Query {
+    seeFollowers(userName: String!, page: Int!): SeeFollowersQuery
+}
