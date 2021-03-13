@@ -1,0 +1,8 @@
+type followResult {
+    ok: Boolean!
+    error: String
+}
+
+type Mutation {
+    followUser(userName: String!): followResult
+}

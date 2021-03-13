@@ -1,41 +1,41 @@
 {
-  "name": "instaclone",
-  "version": "1.0.0",
-  "scripts": {
-    "preinstall": "npx npm-force-resolutions",
-    "dev": "nodemon --exec babel-node server --delay 2s",
-    "migrate": "npx prisma migrate dev --preview-feature",
-    "studio": "npx prisma studio"
-  },
-  "repository": "https://github.com/solitasroh/instaclone-backend.git",
-  "author": "solitas.roh <solitasroh@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/solitasroh/instaclone-backend/issues"
-  },
-  "homepage": "https://github.com/solitasroh/instaclone-backend#readme",
-  "dependencies": {
-    "@prisma/client": "2.17.0",
-    "apollo-server": "^2.19.2",
-    "apollo-server-express": "^2.21.0",
-    "bcrypt": "^5.0.0",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "graphql": "^15.5.0",
-    "graphql-tools": "^7.0.2",
-    "jsonwebtoken": "^8.5.1",
-    "morgan": "^1.10.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.12.13",
-    "@babel/node": "^7.12.13",
-    "@babel/preset-env": "^7.12.13",
-    "nodemon": "^2.0.7",
-    "prettier": "^2.2.1",
-    "prisma": "2.17.0"
-  },
-  "resolutions": {
-    "**/**/fs-capacitor": "^6.2.0",
-    "**/graphql-upload": "^11.0.0"
-  }
+    "name": "instaclone",
+    "version": "1.0.0",
+    "scripts": {
+        "preinstall": "npx npm-force-resolutions",
+        "dev": "nodemon --exec babel-node server --delay 2s",
+        "migrate": "npx prisma migrate dev --preview-feature",
+        "studio": "npx prisma studio"
+    },
+    "repository": "https://github.com/solitasroh/instaclone-backend.git",
+    "author": "solitas.roh <solitasroh@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/solitasroh/instaclone-backend/issues"
+    },
+    "homepage": "https://github.com/solitasroh/instaclone-backend#readme",
+    "dependencies": {
+        "@prisma/client": "2.17.0",
+        "apollo-server": "^2.19.2",
+        "apollo-server-express": "^2.21.0",
+        "bcrypt": "^5.0.0",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "graphql": "^15.5.0",
+        "graphql-tools": "^7.0.2",
+        "jsonwebtoken": "^8.5.1",
+        "morgan": "^1.10.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.12.13",
+        "@babel/node": "^7.12.13",
+        "@babel/preset-env": "^7.12.13",
+        "nodemon": "^2.0.7",
+        "prettier": "2.2.1",
+        "prisma": "2.17.0"
+    },
+    "resolutions": {
+        "**/**/fs-capacitor": "^6.2.0",
+        "**/graphql-upload": "^11.0.0"
+    }
 }
