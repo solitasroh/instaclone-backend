@@ -14,3 +14,14 @@ Instaclone Backend.
 -   [x] See followers and following w/ Pagination
 -   [x] Compute fields
 -   [x] Search Users
+
+## Photos
+
+-   [ ] Upload Photo (Parse #)
+-   [ ] See Photo
+-   [ ] See Hashtags
+-   [ ] Like / Unlike Photo
+-   [ ] Edit Photo
+-   [ ] See Photo Likes
+-   [ ] See Feed
+-   [ ] Search Photos
