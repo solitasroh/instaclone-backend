@@ -1,5 +1,5 @@
 import client from '../client'
-
+let pageCount = 5
 export default {
     Photo: {
         user: ({ userId }) => {
@@ -15,6 +15,32 @@ export default {
                         },
                     },
                 },
+            })
+        },
+    },
+    Hashtag: {
+        totalPhotos: ({ id }) => {
+            return client.photo.count({
+                where: {
+                    hashtags: {
+                        some: {
+                            id,
+                        },
+                    },
+                },
+            })
+        },
+        photos: ({ id }, { page }) => {
+            return client.photo.findMany({
+                where: {
+                    hashtags: {
+                        some: {
+                            id,
+                        },
+                    },
+                },
+                take: 5,
+                skip: (page - 1) * pageCount,
             })
         },
     },
