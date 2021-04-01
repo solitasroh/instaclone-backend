@@ -1,5 +1,6 @@
 import client from '../../client'
 import { protectedResolver } from '../../users/users.utils'
+import { processHashtags } from '../photos.utils'
 
 export default {
     Mutation: {
@@ -8,13 +9,7 @@ export default {
                 let hashtagObj = []
                 if (caption) {
                     /// parse caption
-                    const hashtags = caption.match(/#[\w]+/g)
-                    // console.log(hashtags);
-                    hashtagObj = hashtags.map((hashtag) => ({
-                        where: { hashtag },
-                        create: { hashtag },
-                    }))
-                    console.log(hashtagObj)
+                    const hashtags = processHashtags(caption)
                 }
                 // connectOrCreate (prisma)
                 return client.photo.create({
