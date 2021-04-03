@@ -118,3 +118,6 @@ package-lock.json
 yarn.lock
 
 prisma/migrations
+.DS_Store
+package-lock.json
+migration_lock.toml
