@@ -27,12 +27,13 @@ Instaclone Backend.
 -   [x] See Photo Comments
 -   [x] See Feed
 -   [x] IsMine (Delete Photo)
+-   [x] Delete Photo
 
 ## Comments
 
 -   [x] Comment on Photo
+-   [x] Delete Comment (Is Mine)
 -   [ ] Edit Comment
--   [ ] Delete Comment (Is Mine)
 
 ## Extras
 
