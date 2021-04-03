@@ -2,6 +2,7 @@ import fs, { createWriteStream } from 'fs'
 import bycrpty from 'bcrypt'
 import client from '../../client'
 import { protectedResolver } from '../users.utils'
+import { uploadToS3 } from '../../shared/shared.utils'
 
 export default {
     Mutation: {
@@ -20,18 +21,13 @@ export default {
                 { loggedInUser, protectResolver }
             ) => {
                 let avatarUrl = null
+                console.log(avatar)
                 if (avatar) {
-                    const { filename, createReadStream } = await avatar
-                    const newFilename = `${
-                        loggedInUser.id
-                    }-${Date.now()}-${filename}`
-                    const readStream = createReadStream()
-                    // do not load if we use the aws...
-                    const writeStream = createWriteStream(
-                        process.cwd() + '/uploads/' + newFilename
+                    avatarUrl = await uploadToS3(
+                        avatar,
+                        loggedInUser.id,
+                        'avatars'
                     )
-                    readStream.pipe(writeStream) //save on the filesystem
-                    avatarUrl = `http://localhost:4000/static/${newFilename}`
                 }
 
                 let uglyPassword
