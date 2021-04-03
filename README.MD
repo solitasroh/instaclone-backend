@@ -24,9 +24,9 @@ Instaclone Backend.
 -   [x] Edit Photo
 -   [x] Like / Unlike Photo
 -   [x] See Photo Likes
--   [ ] See Photo Comments
+-   [x] See Photo Comments
 -   [x] See Feed
--   [ ] IsMine (Delete Photo)
+-   [x] IsMine (Delete Photo)
 
 ## Comments
 
