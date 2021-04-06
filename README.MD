@@ -50,4 +50,4 @@ Instaclone Backend.
 -   [x] See Rooms
 -   [x] Computed Fields
 -   [x] See(Read) Message
--   [ ] Realtime Messages
+-   [x] Realtime Messages

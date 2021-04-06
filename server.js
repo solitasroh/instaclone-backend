@@ -14,13 +14,31 @@ const apollo = new ApolloServer({
     resolvers,
     typeDefs,
     uploads: false,
-    context: async ({ req }) => {
-        if (req) {
+    context: async ({ ctx }) => {
+        if (ctx) {
             return {
-                loggedInUser: await getUser(req.headers.token),
+                loggedInUser: await getUser(ctx.req.headers.token),
                 protectResolver,
             }
+        } else {
+            const {
+                connection: { context },
+            } = ctx
+            return {
+                loggedInUser: context.loggedInUser,
+            }
         }
+    },
+    subscriptions: {
+        onConnect: async ({ token }) => {
+            if (!token) {
+                throw new Error("you can't listen.")
+            }
+            const loggedInUser = await getUser(token)
+            return {
+                loggedInUser,
+            }
+        },
     },
 })
 
