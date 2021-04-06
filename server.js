@@ -3,7 +3,7 @@ import express from 'express'
 import logger from 'morgan'
 import { getUser, protectResolver } from './users/users.utils'
 dotenv.config()
-
+import http from 'http'
 import { ApolloServer } from 'apollo-server-express'
 import { typeDefs, resolvers } from './schema'
 import { graphqlUploadExpress } from 'graphql-upload'
@@ -15,9 +15,11 @@ const apollo = new ApolloServer({
     typeDefs,
     uploads: false,
     context: async ({ req }) => {
-        return {
-            loggedInUser: await getUser(req.headers.token),
-            protectResolver,
+        if (req) {
+            return {
+                loggedInUser: await getUser(req.headers.token),
+                protectResolver,
+            }
         }
     },
 })
@@ -28,6 +30,9 @@ app.use(graphqlUploadExpress())
 apollo.applyMiddleware({ app })
 
 app.use('/static', express.static('uploads'))
-app.listen({ port: PORT }, () => {
+
+const httpServer = http.createServer(app)
+apollo.installSubscriptionHandlers(httpServer)
+httpServer.listen(PORT, () => {
     console.log(`✅ Server ready at http://localhost:${PORT}`)
 })
