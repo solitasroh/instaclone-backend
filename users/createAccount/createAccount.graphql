@@ -5,5 +5,5 @@ type Mutation {
         userName: String!
         email: String!
         password: String!
-    ): User
+    ): MutationResponse!
 }
