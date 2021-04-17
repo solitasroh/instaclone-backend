@@ -121,3 +121,4 @@ prisma/migrations
 .DS_Store
 package-lock.json
 migration_lock.toml
+instaclone.code-workspace
