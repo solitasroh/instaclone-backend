@@ -20,7 +20,6 @@ export const protectedResolver = (ourResolver) => (
     context,
     info
 ) => {
-    console.log(`log in user = ${context.loggedInUser}`);
     if (!context.loggedInUser) {
         const query = info.operation.operation === 'query'
         if (query) {

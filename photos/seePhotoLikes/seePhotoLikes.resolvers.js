@@ -11,7 +11,6 @@ export default {
                     user: true,
                 },
             })
-            console.log(likes)
             return likes.map((like) => like.user)
         },
     },

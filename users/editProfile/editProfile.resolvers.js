@@ -21,7 +21,6 @@ export default {
                 { loggedInUser, protectResolver }
             ) => {
                 let avatarUrl = null
-                console.log(avatar)
                 if (avatar) {
                     avatarUrl = await uploadToS3(
                         avatar,
